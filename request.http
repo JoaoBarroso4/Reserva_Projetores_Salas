@@ -1,0 +1,29 @@
+POST http://localhost:4002/products
+content-type: application/json
+
+{
+    "name": "Borracha",
+    "price": 1.5
+}
+
+###
+
+GET http://localhost:4002/products
+
+###
+
+GET http://localhost:4002/products/3b10da3b-a2d9-4c1e-b05b-5acc550bfa46
+
+###
+
+PUT http://localhost:4002/products/ceb96fc4-9ce1-45fa-abb7-d75ec223d70c
+content-type: application/json
+
+{
+    "name": "Borracha FaberCastell",
+    "price": 3.50
+}
+
+
+###
+DELETE http://localhost:4002/products/ceb96fc4-9ce1-45fa-abb7-d75ec223d70c
