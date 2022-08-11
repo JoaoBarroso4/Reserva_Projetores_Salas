@@ -1,13 +1,31 @@
-const { req, res } = require('express');
-const express = require('express');
-const { randomUUID } = require('crypto');
-const fs = require("fs"); 
-
 //install node exec, rest client, express, nodemon
+
+import express from 'express';
+//import * as fs from 'node:fs/promises';
+import * as fs from 'node:fs';
+import { engine } from 'express-handlebars';
+
+//dirname
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const { createHmac } = await import('node:crypto');
 
 const app = express();
 
-app.use(express.json());
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.engine('handlebars', engine());
+app.set('view engine', 'handlebars');
+app.set('views', './views');
+
+app.get('/', (req, res) => {
+    res.render('home');
+});
+
+
+app.use('/static', express.static(__dirname + '/public'));
 
 /*
 app.get("/primeira-rota", (req, res) => {
@@ -16,6 +34,7 @@ app.get("/primeira-rota", (req, res) => {
     });
 });
 */
+
 
 let products = [];
 
